@@ -23,6 +23,14 @@
       "type": "outcome",
       "createdAt": "2023-06-29T19:30:28.543Z",
       "id": 3
+    },
+    {
+      "description": "Clothes",
+      "price": 60,
+      "category": "Store",
+      "type": "outcome",
+      "createdAt": "2023-06-29T21:11:58.016Z",
+      "id": 4
     }
   ]
 }

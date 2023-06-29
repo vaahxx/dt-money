@@ -15,6 +15,14 @@
       "category": "Food",
       "price": 30,
       "createdAt": "2023-05-14T20:00:57.069Z"
+    },
+    {
+      "description": "Pizza",
+      "price": 25,
+      "category": "Food",
+      "type": "outcome",
+      "createdAt": "2023-06-29T19:30:28.543Z",
+      "id": 3
     }
   ]
 }

@@ -4,11 +4,11 @@ import { Header } from "../../components/Header";
 import { Summary } from "../../components/Summary";
 import { SearchForm } from "./components/SearchForm";
 import {
-  PriceHighlight,
+  AmountHighlight,
   TransactionsContainer,
   TransactionsTable,
 } from "./styles";
-import { dateFormatter, priceFormatter } from "../../utils/formatter";
+import { amountFormatter, dateFormatter } from "../../utils/formatter";
 
 export function Transactions() {
   const transactions = useContextSelector(TransactionsContext, (context) => {
@@ -27,10 +27,10 @@ export function Transactions() {
               <tr>
                 <td width='50%'>{transaction.description}</td>
                 <td>
-                  <PriceHighlight variant={transaction.type}>
+                  <AmountHighlight variant={transaction.type}>
                     {transaction.type === "outcome" && "- "}
-                    {priceFormatter.format(transaction.price)} $
-                  </PriceHighlight>
+                    {amountFormatter.format(transaction.amount)} $
+                  </AmountHighlight>
                 </td>
                 <td>{transaction.category}</td>
                 <td>{dateFormatter.format(new Date(transaction.createdAt))}</td>

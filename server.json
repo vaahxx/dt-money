@@ -5,31 +5,31 @@
       "description": "Website Sale",
       "type": "income",
       "category": "Sale",
-      "price": 3000,
-      "createdAt": "2023-05-15T22:57:57.069Z"
+      "amount": 3000,
+      "created_at": "2023-05-15T22:57:57.069Z"
     },
     {
       "id": 2,
       "description": "Hamburguer",
       "type": "outcome",
       "category": "Food",
-      "price": 30,
-      "createdAt": "2023-05-14T20:00:57.069Z"
+      "amount": 30,
+      "created_at": "2023-05-14T20:00:57.069Z"
     },
     {
       "description": "Pizza",
-      "price": 25,
+      "amount": 25,
       "category": "Food",
       "type": "outcome",
-      "createdAt": "2023-06-29T19:30:28.543Z",
+      "created_at": "2023-06-29T19:30:28.543Z",
       "id": 3
     },
     {
       "description": "Clothes",
-      "price": 60,
+      "amount": 60,
       "category": "Store",
       "type": "outcome",
-      "createdAt": "2023-06-29T21:11:58.016Z",
+      "created_at": "2023-06-29T21:11:58.016Z",
       "id": 4
     }
   ]

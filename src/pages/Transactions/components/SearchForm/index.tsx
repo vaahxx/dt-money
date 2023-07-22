@@ -23,7 +23,6 @@ export function SearchForm() {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting },
   } = useForm<SearchFormInputs>({
     resolver: zodResolver(searchFormSchema),
   });
@@ -39,7 +38,7 @@ export function SearchForm() {
         placeholder='Search a transaction'
         {...register("query")}
       ></input>
-      <button type='submit' disabled={isSubmitting}>
+      <button type='submit'>
         <MagnifyingGlass size={20} />
         Search
       </button>

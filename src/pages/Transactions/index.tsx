@@ -24,16 +24,16 @@ export function Transactions() {
         <TransactionsTable>
           <tbody>
             {transactions.map((transaction) => (
-              <tr>
+              <tr key={transaction.id}>
                 <td width='50%'>{transaction.description}</td>
                 <td>
                   <AmountHighlight variant={transaction.type}>
                     {transaction.type === "outcome" && "- "}
-                    {amountFormatter.format(transaction.amount)} $
+                    {amountFormatter.format(transaction.amount)}
                   </AmountHighlight>
                 </td>
                 <td>{transaction.category}</td>
-                <td>{dateFormatter.format(new Date(transaction.createdAt))}</td>
+                <td>{dateFormatter.format(new Date(transaction.created_at))}</td>
               </tr>
             ))}
           </tbody>

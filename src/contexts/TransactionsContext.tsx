@@ -8,7 +8,7 @@ interface Transaction {
   type: "income" | "outcome";
   amount: number;
   category: string;
-  createdAt: string;
+  created_at: string;
 }
 
 interface CreateTransactionInput {
@@ -34,8 +34,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   const fetchTransactions = useCallback(async (query?: string) => {
-    const response = await api.get("/transactions");
-    setTransactions(response.data);
+    const url = query ? `/transactions?description=${query}` : "/transactions";
+    const response = await api.get(url);
+    setTransactions(response.data?.transactions);
   }, []);
 
   const createTransaction = useCallback(
@@ -49,7 +50,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         created_at: new Date(),
       });
 
-      setTransactions((state) => [response.data, ...state]);
+      setTransactions((state) => [response.data?.transaction[0], ...state]);
     },
     []
   );

@@ -12,17 +12,14 @@ export function useSummary() {
       (acc, transaction) => {
         if (transaction.type === "income") {
           acc.income += transaction.amount;
-          acc.total += transaction.amount;
         } else {
           acc.outcome += transaction.amount;
-          acc.total -= transaction.amount;
         }
         return acc;
       },
       {
         income: 0,
         outcome: 0,
-        total: 0,
       }
     );
   }, [transactions]);

@@ -2,9 +2,17 @@ import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from "phosphor-react";
 import { SummaryCard, SummaryContainer } from "./styles";
 import { amountFormatter } from "../../utils/formatter";
 import { useSummary } from "../../hooks/useSummary";
+import { useContextSelector } from "use-context-selector";
+import { TransactionsContext } from "../../contexts/TransactionsContext";
 
 export function Summary() {
   const summary = useSummary();
+
+  const totalAmount = useContextSelector(
+    TransactionsContext, (context) => {
+      return context.totalAmount;
+    }
+  )
 
   return (
     <SummaryContainer>
@@ -29,7 +37,7 @@ export function Summary() {
           <span>Total</span>
           <CurrencyDollar size={32} color='#fff' />
         </header>
-        <strong>{amountFormatter.format(summary.total)}</strong>
+        <strong>{amountFormatter.format(totalAmount)}</strong>
       </SummaryCard>
     </SummaryContainer>
   );

@@ -28,7 +28,6 @@ export function Transactions() {
                 <td width='50%'>{transaction.description}</td>
                 <td>
                   <AmountHighlight variant={transaction.type}>
-                    {transaction.type === "outcome" && "- "}
                     {amountFormatter.format(transaction.amount)}
                   </AmountHighlight>
                 </td>

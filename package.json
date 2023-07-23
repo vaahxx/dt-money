@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18.17.0 <20.5.0",
+    "npm": ">=18.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "dev:server": "json-server server.json -w -d 750",
@@ -21,6 +25,7 @@
     "scheduler": "^0.23.0",
     "styled-components": "^5.3.6",
     "use-context-selector": "^1.4.1",
+    "vite-plugin-commonjs": "^0.8.2",
     "zod": "^3.21.4"
   },
   "devDependencies": {

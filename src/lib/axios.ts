@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "https://nodejs-transactions-api-mlrg.onrender.com/",
+  baseURL: "https://dt-money-api.learntics.com/",
   withCredentials: true,
 });

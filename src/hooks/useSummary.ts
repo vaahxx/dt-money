@@ -10,10 +10,11 @@ export function useSummary() {
   const summary = useMemo(() => {
     return transactions.reduce(
       (acc, transaction) => {
+        console.log(transaction);
         if (transaction.type === "income") {
           acc.income += transaction.amount;
         } else {
-          acc.outcome += transaction.amount;
+          acc.outcome += (transaction.amount * -1) * -1;
         }
         return acc;
       },

@@ -21,6 +21,7 @@ interface CreateTransactionInput {
 interface TransactionContextType {
   transactions: Transaction[];
   totalAmount: number;
+  isCreatingTransaction: boolean;
   fetchTransactions: (query?: string) => Promise<void>;
   createTransaction: (data: CreateTransactionInput) => Promise<void>;
 }
@@ -34,6 +35,7 @@ export const TransactionsContext = createContext({} as TransactionContextType);
 export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [totalAmount, setTotalAmount] = useState(0);
+  const [isCreatingTransaction, setIsCreatingTransaction] = useState(false);
 
   const fetchTransactions = useCallback(async (query?: string) => {
     const url = query ? `/transactions?description=${query}` : "/transactions";
@@ -47,6 +49,9 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   const createTransaction = useCallback(
     async (data: CreateTransactionInput) => {
       const { description, amount, category, type } = data;
+
+      setIsCreatingTransaction(true);
+
       const transactionResponse = await api.post("/transactions", {
         description,
         amount,
@@ -55,8 +60,12 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
         created_at: new Date(),
       });
 
-      setTransactions((state) => [transactionResponse.data?.transaction[0], ...state]);
+      setTransactions((state) => [
+        transactionResponse.data?.transaction[0],
+        ...state,
+      ]);
 
+      setIsCreatingTransaction(false);
       const summaryResponse = await api.get("/transactions/summary");
       setTotalAmount(summaryResponse.data?.summary?.amount);
     },
@@ -69,7 +78,13 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
 
   return (
     <TransactionsContext.Provider
-      value={{ transactions, totalAmount, fetchTransactions, createTransaction }}
+      value={{
+        transactions,
+        totalAmount,
+        isCreatingTransaction,
+        fetchTransactions,
+        createTransaction,
+      }}
     >
       {children}
     </TransactionsContext.Provider>

@@ -58,6 +58,13 @@ export const Content = styled(Dialog.Content)`
         background: ${(props) => props.theme["green-700"]};
         transition: background-color 0.2s;
       }
+
+      div {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
     }
   }
 `;

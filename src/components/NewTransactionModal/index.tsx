@@ -6,7 +6,7 @@ import {
   TransactionType,
   TransactionTypeButton,
 } from "./styles";
-import { ArrowCircleDown, ArrowCircleUp, X } from "phosphor-react";
+import { ArrowCircleDown, ArrowCircleUp, Spinner, X } from "phosphor-react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
@@ -35,6 +35,13 @@ export function NewTransactionModal() {
     TransactionsContext,
     (context) => {
       return context.createTransaction;
+    }
+  );
+
+  const isCreatingTransaction = useContextSelector(
+    TransactionsContext,
+    (context) => {
+      return context.isCreatingTransaction;
     }
   );
 
@@ -78,7 +85,7 @@ export function NewTransactionModal() {
               return (
                 <TransactionType
                   onValueChange={(value: NewTransactionFormInputs["type"]) => {
-                    field.onChange(value)
+                    field.onChange(value);
                   }}
                   value={field.value}
                 >
@@ -96,7 +103,16 @@ export function NewTransactionModal() {
             }}
           />
 
-          <button type='submit'>Create</button>
+          <button type='submit'>
+            {isCreatingTransaction ? (
+              <div>
+                <Spinner size={24} />
+                <span>Creating...</span>
+              </div>
+            ) : (
+              "Create"
+            )}
+          </button>
         </form>
       </Content>
     </Dialog.Portal>
